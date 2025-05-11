@@ -1,63 +1,70 @@
 #include <stdio.h>
 
 // Desafio de Xadrez - MateCheck
-// Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
-// O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
+// Este código explora recursividade e loops complexos para simular movimentos de peças de xadrez.
+
+// Nível Mestre - Criando Movimentos Complexos
+
+// Constantes para o número de movimentos
+const int MOVIMENTOS_TORRE = 5;
+const int MOVIMENTOS_BISPO = 5;
+const int MOVIMENTOS_RAINHA = 8;
+const int MOVIMENTOS_CAVALO_CIMA = 2;
+const int MOVIMENTO_CAVALO_DIREITA = 1;
+
+// Função recursiva para o movimento da Torre
+void moverTorreRecursivo(int movimentos) {
+    if (movimentos > 0) {
+        printf("Direita\n");
+        moverTorreRecursivo(movimentos - 1);
+    }
+}
+
+// Função recursiva para o movimento do Bispo
+void moverBispoRecursivo(int movimentos) {
+    if (movimentos > 0) {
+        printf("Cima, Direita\n");
+        moverBispoRecursivo(movimentos - 1);
+    }
+}
+
+// Função recursiva para o movimento da Rainha
+void moverRainhaRecursivo(int movimentos) {
+    if (movimentos > 0) {
+        printf("Esquerda\n");
+        moverRainhaRecursivo(movimentos - 1);
+    }
+}
 
 int main() {
-    // Nível Novato - Movimentação das Peças
-    // Sugestão: Declare variáveis constantes para representar o número de casas que cada peça pode se mover.
-    const int MOVIMENTOS_TORRE = 5;
-    const int MOVIMENTOS_BISPO = 5;
-    const int MOVIMENTOS_RAINHA = 8;
+    // Movimentação da Torre com Recursividade
+    printf("Movimento da Torre (Recursivo):\n");
+    moverTorreRecursivo(MOVIMENTOS_TORRE);
+    printf("\n");
 
-    // Implementação de Movimentação da Torre
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Torre para a direita.
-    // Movimento da Torre (usando for)
-    printf("Movimento da Torre:\n");
-    for (int i = 0; i < MOVIMENTOS_TORRE; i++) {
-        printf("Direita\n");
+    // Movimentação do Bispo com Recursividade e Loops Aninhados
+    printf("Movimento do Bispo (Recursivo e Loops Aninhados):\n");
+    for (int vertical = 0; vertical < MOVIMENTOS_BISPO; vertical++) {
+        for (int horizontal = vertical; horizontal <= vertical; horizontal++) {
+            printf("Cima, Direita\n");
+        }
     }
     printf("\n");
 
-    // Implementação de Movimentação do Bispo
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação do Bispo em diagonal.
-    // Movimento do Bispo (usando while)
-    printf("Movimento do Bispo:\n");
-    int j = 0;
-    while (j < MOVIMENTOS_BISPO) {
-        printf("Cima, Direita\n");
-        j++;
-    }
+    // Movimentação da Rainha com Recursividade
+    printf("Movimento da Rainha (Recursivo):\n");
+    moverRainhaRecursivo(MOVIMENTOS_RAINHA);
     printf("\n");
 
-    // Implementação de Movimentação da Rainha
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Rainha para a esquerda.
-    // Movimento da Rainha (usando do-while)
-    printf("Movimento da Rainha:\n");
-    int k = 0;
-    do {
-        printf("Esquerda\n");
-        k++;
-    } while (k < MOVIMENTOS_RAINHA);
-    printf("\n");
-
-    // Nível Aventureiro - Movimentação do Cavalo
-    // Sugestão: Utilize loops aninhados para simular a movimentação do Cavalo em L.
-    // Um loop pode representar a movimentação horizontal e outro vertical.
-    // Nível Aventureiro - Movimentação do Cavalo
-    printf("\nMovimento do Cavalo:\n");
-    const int MOVIMENTOS_BAIXO = 2;
-    const int MOVIMENTO_ESQUERDA = 1;
-
-    // Simula o movimento de duas casas para baixo (usando for)
-    for (int baixo = 0; baixo < MOVIMENTOS_BAIXO; baixo++) {
-        printf("Baixo\n");
-        // Simula o movimento de uma casa para a esquerda (usando while)
-        int esquerda = 0;
-        while (esquerda < MOVIMENTO_ESQUERDA && baixo == MOVIMENTOS_BAIXO - 1) {
-            printf("Esquerda\n");
-            esquerda++;
+    // Movimentação do Cavalo com Loops Complexos
+    printf("Movimento do Cavalo (Loops Complexos):\n");
+    for (int cima = 0, direita = 0; cima < MOVIMENTOS_CAVALO_CIMA; ) {
+        printf("Cima\n");
+        cima++;
+        if (cima == MOVIMENTOS_CAVALO_CIMA && direita < MOVIMENTO_CAVALO_DIREITA) {
+            printf("Direita\n");
+            direita++;
+            continue; // Continua para a próxima iteração (condição de cima ainda é verdadeira ou falsa)
         }
     }
     printf("\n");
